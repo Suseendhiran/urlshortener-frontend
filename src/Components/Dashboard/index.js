@@ -35,6 +35,10 @@ function Index() {
         resetForm();
         addToast(res.data.message, { appearance: "success" });
         getUrls();
+        window.scrollTo({
+          top: document.body.scrollHeight,
+          behavior: "smooth",
+        });
       })
       .catch((err) => {
         setLoading(false);
@@ -48,6 +52,7 @@ function Index() {
       .get(`users/${id}`)
       .then((res) => {
         setUrls(res.data.urlsDetails);
+
         setLoading(false);
       })
       .catch((err) => {
