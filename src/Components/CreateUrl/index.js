@@ -5,7 +5,7 @@ import InputField from "../InputField";
 import Button from "../Button";
 import Spinner from "../InlineSpinner";
 
-function index({ validationSchema, handleLogin, inputs, loading }) {
+function index({ validationSchema, handleLogin, inputs, loading, active }) {
   return (
     <Formik
       initialValues={{
@@ -48,7 +48,7 @@ function index({ validationSchema, handleLogin, inputs, loading }) {
               ))}
               <Button
                 type="submit"
-                disabled={loading}
+                disabled={loading || !active}
                 buttonText={"SHORTEN"}
                 loading={loading}
                 className="px-10 mt-0 ml-2 mb-0 py-2 flex relative"

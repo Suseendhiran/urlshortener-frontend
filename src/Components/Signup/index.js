@@ -110,9 +110,10 @@ function Index() {
                 disabled={loading}
                 buttonText={"SUBMIT"}
                 loading={loading}
+                className={"flex  relative px-9"}
               >
                 {" "}
-                <Spinner />
+                <Spinner className={"absolute right-5"} />
               </Button>
             </form>
             <div className="mt-4 flex justify-end font-medium text-gray-700">

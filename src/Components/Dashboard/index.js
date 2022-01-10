@@ -11,7 +11,7 @@ import Spinner from "../Spinner";
 function Index() {
   const { addToast } = useToasts();
   const { getUser } = useAuth();
-  const { id } = getUser();
+  const { id, active } = getUser();
 
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -73,13 +73,18 @@ function Index() {
         handleLogin={handleLogin}
         inputs={INPUTS}
         loading={loading}
+        active={active}
       />
       {urls && urls.length ? (
         <Table urls={urls} loading={loading} />
       ) : loading ? (
         <h1 className="text-4xl font-semibold  mt-10">Loading...</h1>
       ) : (
-        <h1 className="text-4xl font-semibold mt-10">Try Adding Your URL</h1>
+        <h1 className="text-4xl font-semibold max-w-2xl mx-auto  mt-10">
+          {!active
+            ? "Mail has been sent to your email, Click that link to activate your account, then Logout and  try again"
+            : "Try Adding Your URL"}
+        </h1>
       )}
     </div>
   );
