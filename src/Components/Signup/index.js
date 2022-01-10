@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Formik } from "formik";
 import { useHistory } from "react-router-dom";
 import { useToasts } from "react-toast-notifications";
+import jwtDecode from "jwt-decode";
 
 import InputField from "../InputField";
 import { signupSchema } from "../../helpers/validationSchema";
@@ -50,6 +51,10 @@ function Index() {
       .then((res) => {
         console.log("res", res.data);
         localStorage.setItem("token", res.data.token);
+        localStorage.setItem(
+          "userData",
+          JSON.stringify(jwtDecode(res.data.token))
+        );
         setToken(res.data.token);
         history.push("/dashboard");
         addToast(res.data.message, { appearance: "success" });
