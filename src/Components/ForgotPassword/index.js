@@ -60,7 +60,7 @@ function Index() {
         return (
           <div className=" w-96 m-auto mt-14">
             <form onSubmit={handleSubmit}>
-              <h1 className="font-semibold text-4xl mb-10">Login</h1>
+              <h1 className="font-semibold text-4xl mb-10">Forgot Password</h1>
               {INPUTS.map((input) => (
                 <InputField
                   key={input.name}
@@ -81,9 +81,10 @@ function Index() {
                 disabled={loading}
                 buttonText={"SUBMIT"}
                 loading={loading}
+                className="flex relative px-8"
               >
                 {" "}
-                <Spinner />
+                <Spinner className={"absolute right-3"} />
               </Button>
             </form>
             <div className="mt-4 flex justify-end font-medium text-gray-700">
