@@ -12,6 +12,7 @@ import Spinner from "../InlineSpinner";
 function Index() {
   const history = useHistory();
   const { addToast } = useToasts();
+  const AXIOS = axios();
   const [loading, setLoading] = useState(false);
   const INPUTS = [
     {
@@ -24,10 +25,9 @@ function Index() {
 
   const handleSubmit = (values) => {
     setLoading(true);
-    axios
-      .put(`/users/forgotpassword`, {
-        ...values,
-      })
+    AXIOS.put(`/users/forgotpassword`, {
+      ...values,
+    })
       .then((res) => {
         console.log("res", res.data);
         addToast(res.data.message, { appearance: "success" });

@@ -12,6 +12,7 @@ import { useLocation } from "react-router-dom";
 
 function Index() {
   const history = useHistory();
+  const AXIOS = axios();
   const { search } = useLocation();
   const queryStringParams = new URLSearchParams(search);
   const token = queryStringParams.get("token");
@@ -36,12 +37,11 @@ function Index() {
 
   const handleLogin = (values) => {
     setLoading(true);
-    axios
-      .put(`/users/resetpassword`, {
-        token: token,
-        id: id,
-        password: values.password,
-      })
+    AXIOS.put(`/users/resetpassword`, {
+      token: token,
+      id: id,
+      password: values.password,
+    })
       .then((res) => {
         addToast(res.data.message, { appearance: "success" });
         setLoading(false);

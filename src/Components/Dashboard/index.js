@@ -12,7 +12,7 @@ function Index() {
   const { addToast } = useToasts();
   const { getUser } = useAuth();
   const { id, active } = getUser();
-
+  const AXIOS = axios();
   const [urls, setUrls] = useState([]);
   const [loading, setLoading] = useState(true);
   const INPUTS = [
@@ -24,12 +24,11 @@ function Index() {
     },
   ];
 
-  const handleLogin = (values, resetForm) => {
+  const handleCreateUrl = (values, resetForm) => {
     setLoading(true);
-    axios
-      .post(`/shorturls`, {
-        ...values,
-      })
+    AXIOS.post(`/shorturls`, {
+      ...values,
+    })
       .then((res) => {
         setLoading(false);
         resetForm();
@@ -48,8 +47,7 @@ function Index() {
 
   const getUrls = () => {
     setLoading(true);
-    axios
-      .get(`users/${id}`)
+    AXIOS.get(`users/${id}`)
       .then((res) => {
         setUrls(res.data.urlsDetails);
 
@@ -70,7 +68,7 @@ function Index() {
     <div className="mt-26 pb-16">
       <CreateUrl
         validationSchema={urlSchema}
-        handleLogin={handleLogin}
+        handleLogin={handleCreateUrl}
         inputs={INPUTS}
         loading={loading}
         active={active}

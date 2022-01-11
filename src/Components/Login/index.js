@@ -30,13 +30,12 @@ function Index() {
       placeholder: "Password",
     },
   ];
-
+  const AXIOS = axios();
   const handleLogin = (values) => {
     setLoading(true);
-    axios
-      .put(`/users/login`, {
-        ...values,
-      })
+    AXIOS.put(`/users/login`, {
+      ...values,
+    })
       .then((res) => {
         console.log("res", res.data);
         addToast(res.data.message, { appearance: "success" });

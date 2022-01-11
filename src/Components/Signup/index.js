@@ -13,6 +13,7 @@ import { useAuth } from "../../Providers/AuthProvider";
 
 function Index() {
   const history = useHistory();
+  const AXIOS = axios();
   const { setToken } = useAuth();
   const { addToast } = useToasts();
   const [loading, setLoading] = useState(false);
@@ -44,10 +45,9 @@ function Index() {
   ];
   const handleSignup = (values) => {
     setLoading(true);
-    axios
-      .post(`/users/signup`, {
-        ...values,
-      })
+    AXIOS.post(`/users/signup`, {
+      ...values,
+    })
       .then((res) => {
         console.log("res", res.data);
         localStorage.setItem("token", res.data.token);
